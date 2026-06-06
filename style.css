@@ -604,7 +604,7 @@ img { max-width: 100%; display: block; }
 .timeline::before {
   content: '';
   position: absolute;
-  left: 168px;
+  left: 210px;
   top: 0; bottom: 0;
   width: 1px;
   background: var(--color-border);
@@ -612,7 +612,7 @@ img { max-width: 100%; display: block; }
 
 .timeline-item {
   display: grid;
-  grid-template-columns: 168px 1fr;
+  grid-template-columns: 210px 1fr;
   gap: 0 52px;
   padding-bottom: 44px;
   position: relative;
@@ -622,7 +622,7 @@ img { max-width: 100%; display: block; }
 .timeline-item::after {
   content: '';
   position: absolute;
-  left: 164px;
+  left: 206px;
   top: 6px;
   width: 8px;
   height: 8px;
@@ -633,7 +633,7 @@ img { max-width: 100%; display: block; }
 
 .timeline-left {
   text-align: right;
-  padding-top: 3px;
+  padding-top: 0px;
 }
 
 .timeline-date {
