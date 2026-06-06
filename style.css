@@ -201,12 +201,11 @@ img { max-width: 100%; display: block; }
 /* =============================================
    HERO
    ============================================= */
+
 .hero {
-.hero {
-  padding: calc(var(--nav-height) + 80px) 0 80px;
+  padding: calc(var(--nav-height) + 40px) 0 56px;
   display: flex;
-  align-items: center;
-}
+  align-items: flex-start;
 }
 
 .hero-eyebrow {
