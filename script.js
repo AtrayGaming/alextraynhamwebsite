@@ -42,7 +42,7 @@ const observer = new IntersectionObserver(entries => {
 document.querySelectorAll('section[id]').forEach(s => observer.observe(s));
 
 // ── Subtle fade-in on scroll for cards
-const fadeEls = document.querySelectorAll('.project-card, .timeline-item, .about-card, .skill-group');
+const fadeEls = document.querySelectorAll('.identity-item, .project-card, .timeline-item, .about-card, .education-panel, .cert-item, .skill-group');
 
 const fadeObserver = new IntersectionObserver(entries => {
   entries.forEach(entry => {
