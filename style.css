@@ -490,6 +490,13 @@ img { max-width: 100%; display: block; }
   margin-bottom: 14px;
 }
 
+.project-labels {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
 .project-tag {
   display: inline-flex;
   align-items: center;
@@ -506,6 +513,7 @@ img { max-width: 100%; display: block; }
 .tag-research { background: var(--tag-research-bg); color: var(--tag-research-text); }
 .tag-production { background: var(--tag-production-bg); color: var(--tag-production-text); }
 .tag-marketing { background: var(--tag-marketing-bg); color: var(--tag-marketing-text); }
+.tag-featured { background: var(--color-ink); color: #ffffff; }
 
 .project-year {
   font-size: 12px;
@@ -939,8 +947,9 @@ img { max-width: 100%; display: block; }
 .footer-inner {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: 16px;
+  text-align: center;
 }
 
 .footer-inner span {
