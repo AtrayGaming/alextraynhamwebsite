@@ -32,9 +32,6 @@
   --tag-production-text: #8a4a0c;
   --tag-marketing-bg: #fbe8f0;
   --tag-marketing-text: #9d3158;
-  --tag-technical-bg: #eef3f0;
-  --tag-technical-text: #285143;
-
   --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --max-width: 1120px;
   --nav-height: 68px;
@@ -515,7 +512,6 @@ img { max-width: 100%; display: block; }
 .tag-research { background: var(--tag-research-bg); color: var(--tag-research-text); }
 .tag-production { background: var(--tag-production-bg); color: var(--tag-production-text); }
 .tag-marketing { background: var(--tag-marketing-bg); color: var(--tag-marketing-text); }
-.tag-technical { background: var(--tag-technical-bg); color: var(--tag-technical-text); }
 .tag-featured { background: var(--color-ink); color: #ffffff; }
 
 .project-year {
