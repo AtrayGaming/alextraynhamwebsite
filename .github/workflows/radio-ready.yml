@@ -12,7 +12,11 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        suite: [api, browser]
+        include:
+          - { suite: api, browser: chromium }
+          - { suite: browser, browser: chromium }
+          - { suite: browser, browser: firefox }
+          - { suite: browser, browser: webkit }
     defaults:
       run:
         working-directory: apps/radio-ready
@@ -35,6 +39,8 @@ jobs:
       - if: matrix.suite == 'api'
         run: node scripts/run-verification.mjs
       - if: matrix.suite == 'browser'
-        run: npx playwright install --with-deps chromium
+        run: npx playwright install --with-deps ${{ matrix.browser }}
       - if: matrix.suite == 'browser'
         run: npm run test:e2e
+        env:
+          BROWSER: ${{ matrix.browser }}
