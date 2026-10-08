@@ -60,6 +60,8 @@ This creates random local-only fixture credentials under ignored `.data/`. Never
 
 Cloudflare Workers is the deployment target, using `wrangler.jsonc` and a pinned OpenNext adapter. Run `npm run build:cloudflare`, `npm run preview:cloudflare` for a local Workers preview, and `npm run deploy:cloudflare` only after selecting the correct Cloudflare account. The app root is `apps/radio-ready`; the portfolio root remains a separate Pages site.
 
-The Cloudflare connector is authenticated. The `radio-ready` Worker and Git build trigger are prepared, but the application has not been published: Workers Builds cannot access the GitHub repository and requires the owner to reconnect its GitHub installation. The bootstrap Worker returns 503 and its workers.dev and preview URLs are disabled. No custom domain is attached. The local Wrangler CLI remains unauthenticated. Account services additionally need a provisioned remote libSQL database. Without account configuration, the fictional guest demo works and restricted services fail closed. No company content belongs in this deployment.
+The fictional public demonstration is live at **https://radio.alextraynham.com** on Cloudflare Workers. Workers Builds deploys the `radio-ready-2` GitHub branch automatically. The portfolio root remains a separate Pages project. The local Wrangler CLI is not authenticated; use the connected build pipeline or log in explicitly for local deployment.
+
+Account services are deliberately disabled until a remote libSQL database and runtime authentication secrets are provisioned and verified. Guest progress is stored only in the visitor's browser. No company content belongs in this deployment.
 
 See [the audit](docs/AUDIT.md), [design decisions](docs/DESIGN.md), and [deployment/operations guide](docs/OPERATIONS.md). The original internal project is deliberately excluded. Internal use requires a separate company-approved environment, identity system, content owner and data policy.

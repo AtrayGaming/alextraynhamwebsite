@@ -23,7 +23,7 @@ The separate portfolio case-study page also passed desktop/mobile axe checks, a 
 
 ## Release gates still open
 
-- Cloudflare Worker deployment, public HTTPS/domain verification, and remote database provisioning.
+- Remote database provisioning and authenticated production verification. Public Worker deployment and HTTPS custom-domain checks are now complete.
 - Remote database migration, cross-device persistence, production cookie behavior, backup/restore, and rollback exercise.
 - Physical Safari/mobile coverage, a screen-reader/manual accessibility review, and realistic concurrent-load testing.
 - Real-account enrollment and recovery policy, MFA/SSO for a broader audience, account retention/deletion procedure, and a privacy review before recording real learning activity.
@@ -45,3 +45,15 @@ Commit `11fa0fcd15ed092decf2f368d70b4f5b4a62149e` passed all five GitHub jobs: A
 The Workers job builds OpenNext, runs the actual local workerd runtime, validates all three public routes and security headers, verifies all 53 items are fictional, confirms account APIs fail closed without configuration, and exercises public browser interactions and axe checks. The preview-manifest compatibility fix resolves the prior runtime 500. The deploy dry run also passed (1,289.92 KiB compressed).
 
 This establishes Workers-runtime compatibility, not successful production hosting. Cloudflare's first remote build stopped before compilation because its GitHub integration cannot access the repository. No production app, custom domain, remote database, or production auth verification is claimed. See OPERATIONS.md for the exact deployment checkpoint and owner action.
+
+## Public launch verification
+
+The GitHub installation was reconnected and Cloudflare successfully deployed the app. https://radio.alextraynham.com now serves the landing page, practice studio, and case study over valid HTTPS. All three returned 200 with the expected content type and `nosniff` header. The served catalog contains 53 independently fictional items. The configuration explicitly reports accounts disabled; restricted session access returns 503.
+
+Source CI also passed on documentation checkpoint `3257e0d4fcfa135f0ed4fd36bfb72914d1aa19b8`: https://github.com/AtrayGaming/alextraynhamwebsite/actions/runs/37849783105 .
+
+The live Worker origin passed all eleven public Chromium browser groups, including all four learning modes, finite Quick Match completion, guest refresh persistence, mobile layout, keyboard navigation, and axe accessibility checks. Evidence: https://github.com/AtrayGaming/alextraynhamwebsite/actions/runs/37850814387/job/113562969954 .
+
+The custom-domain browser job was blocked before reaching the app: HTTP 403, title `Just a moment...`, and `cf-mitigated: challenge`. This is a Cloudflare edge challenge, not an application test pass. Ordinary HTTPS requests from the test environment retrieved the expected Radio Ready HTML and API responses. Existing zone bot protection was left unchanged. Full browser interactions on the custom domain still need a normal human-browser check; no challenge was bypassed. The combined live workflow therefore reports failure for that origin while the Worker-origin job passes. Evidence: https://github.com/AtrayGaming/alextraynhamwebsite/actions/runs/37850814387/job/113562970334 .
+
+A local production-browser attempt also failed at Chromium startup with SIGSEGV in the execution environment; live browser evidence above comes from the clean GitHub runner. No remote account/database behavior is claimed.

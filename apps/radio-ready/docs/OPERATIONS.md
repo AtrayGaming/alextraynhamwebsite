@@ -46,21 +46,24 @@ For production, enable the database provider's backup/recovery option under the 
 
 Record each deployed Git SHA and schema version. Prefer additive database changes compatible with the previous application. Roll back the application to the prior tested Cloudflare Worker version, then verify public routes, login, and a saved-session read. Application rollback does not undo database migrations or content publishing. Revert content through a new reviewed revision; never mutate a revision pinned by an existing practice session. For a breaking schema rollback, use a separately verified database restore and document any lost writes.
 
-## Deployment checkpoint: 2026-10-08
+## Live deployment: 2026-10-08
 
-Cloudflare account access is confirmed through the connector. The active `alextraynham.com` zone is in the same account. No existing Worker or DNS record conflicted with `radio-ready` or `radio.alextraynham.com`. The portfolio Pages configuration, apex DNS, and nameservers were left unchanged.
+The fictional guest app is live at https://radio.alextraynham.com, served by the `radio-ready` Worker. The workers.dev URL is https://radio-ready.traynham.workers.dev. The `alextraynham.com` portfolio Pages configuration, apex DNS, and nameservers were left unchanged.
 
-- Worker: `radio-ready`, tag `55140aa9c18b478f895f5a443a55bb4e`. This is a bootstrap returning 503, not the application. Both workers.dev and preview URLs are disabled pending deployment.
+- Worker tag: `55140aa9c18b478f895f5a443a55bb4e`.
 - Build trigger: `638a938d-adf2-4751-a80b-627595564b40`, named Radio Ready public demo.
-- Repository: `AtrayGaming/alextraynhamwebsite`, branch `radio-ready-2`, root `/apps/radio-ready`.
+- Source: `AtrayGaming/alextraynhamwebsite`, branch `radio-ready-2`, root `/apps/radio-ready`.
 - Build/deploy: `npm run build:cloudflare` / `npm run deploy:cloudflare`.
 - Build environment: Node 22.22.3; Next telemetry disabled. No account/database credentials provisioned.
-- The trigger references the existing Cloudflare-managed build token labeled `x402-proxy-template build token`. Its secret was neither retrieved nor copied. After reconnecting GitHub, review the token in Cloudflare and prefer a dedicated Radio Ready deployment token. No credential was added to GitHub or this repository.
-- Attempted build `8e0f4802-b1aa-4e4d-b539-042683811a4d` stopped before compilation: “unable to access repository.” The separate Pages Git integration does not establish Workers Builds repository access.
+- Custom domain ID: `65677b05266cdee9dbe27b85088b73b01e37b356`. The hostname is also committed in Wrangler configuration. Version-specific preview URLs are disabled.
+- The build references an existing Cloudflare-managed token labeled `x402-proxy-template build token`. Its secret was neither retrieved nor copied. Prefer a dedicated Radio Ready build token at the next credential-maintenance review. No credentials were added to GitHub or this repository.
+- The initial GitHub-access failure was resolved by reconnecting the installation. Build `6c19d030-c4b5-4c52-9cdf-ee831b51a5c9` successfully published commit `3257e0d4fcfa135f0ed4fd36bfb72914d1aa19b8`. The source-controlled custom-domain configuration follows in commit `89227f780af5cb652db1bb506b891a758208d7a0`.
 
-**Owner action:** In Cloudflare Workers & Pages, open `radio-ready` and its build settings. Reconnect/configure the GitHub integration and grant it access to `AtrayGaming/alextraynhamwebsite`. This account installation grant requires the owner's authorization. Then rerun the existing build against the verified branch. Do not change the portfolio Pages project.
+All three public routes respond over HTTPS, all 53 served items are fictional, `/api/config` reports accounts disabled, and restricted session access returns 503. Guest progress stays in the browser. No remote database or account credentials are configured. No paid plan or service was purchased.
 
-After successful deployment, verify the workers.dev app, then attach `radio.alextraynham.com` and repeat public-route, fictional-content, browser, accessibility, and fail-closed account checks over HTTPS. The custom domain is intentionally unattached until the app is ready. No paid plan or service has been purchased.
+The `Radio Ready live demo` workflow tests both live origins without accounts or server-side writes. The Worker-origin browser suite passes; the custom-domain browser is challenged by existing Cloudflare bot protection. Keep this distinction visible in test reports and complete a normal human-browser check of the custom domain. It can be run manually after it reaches the default branch. Existing source CI separately tests API permissions against isolated synthetic accounts, all three browser engines, and the Workers runtime.
+
+The portfolio integration is prepared in draft PR #1 and is not merged into the portfolio homepage. Keep the app's deployment branch set explicitly until a deliberate migration to main. For a rollback, choose a prior successful version in Cloudflare, verify the public routes, and align the source branch before the next automated deployment.
 
 ## OpenNext compatibility
 
