@@ -14,6 +14,10 @@
     "CLOUDFLARE_WORKER": "1"
   },
   "workers_dev": true,
+  "preview_urls": false,
+  "routes": [
+    { "pattern": "radio.alextraynham.com", "custom_domain": true }
+  ],
   "observability": {
     "enabled": true,
     "head_sampling_rate": 0.1

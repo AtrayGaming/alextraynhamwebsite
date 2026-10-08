@@ -1,0 +1,29 @@
+name: Radio Ready live demo
+on:
+  workflow_dispatch:
+  push:
+    branches: [radio-ready-2]
+    paths: ['.github/workflows/radio-ready-live.yml']
+permissions:
+  contents: read
+jobs:
+  public-browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: apps/radio-ready
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: apps/radio-ready/package-lock.json
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Verify deployed fictional demo
+        run: node scripts/browser-check.mjs
+        env:
+          TEST_BASE_URL: https://radio.alextraynham.com
+          PUBLIC_DEMO: '1'
