@@ -26,12 +26,14 @@ Retain React/TypeScript, flashcard recall, finite retry sessions, category selec
 
 ## Architecture
 
-Next.js App Router on Vercel, Better Auth for account/session handling, Drizzle + libSQL for persistent content and session records. Local development uses a real SQLite file through the same client; production uses a separately provisioned remote Turso/libSQL database. No filesystem database is allowed on Vercel. Auth and account features fail closed when configuration is absent; the public guest demo remains functional and explicitly device-local.
+Next.js App Router on Cloudflare Workers through OpenNext, Better Auth for account/session handling, and Drizzle + libSQL for persistent content and session records. The owner selected Cloudflare on 2026-10-08. OpenNext retains the existing tested Next.js build; it is independently managed and has no Sites runtime dependency. Cloudflare currently recommends vinext for new Next.js deployments, while maintaining its OpenNext guide. Changing the application runtime again is unnecessary for this existing build.
 
-Cloudflare Workers with static assets and D1 is a strong alternative, especially where an account is already configured. It requires a Workers-compatible application/auth adapter and Cloudflare deployment access. Cloudflare Pages alone does not supply the requested backend. Vercel is connected here and keeps native Next support, previews and rollback straightforward. A personal portfolio demo may fit Vercel Hobby's personal/non-commercial scope; any expanded organizational or commercial use requires a fresh plan/terms assessment. Database costs depend on the selected provider plan and usage; no paid service is authorized by this implementation.
+Local Node development uses SQLite. Workers account services require a separately provisioned remote libSQL/Turso database. The transport must be compatible with Workers; local filesystem databases are rejected. D1 would consolidate storage under Cloudflare, but its transaction API differs from the tested libSQL adapter. It is a possible later migration, not an implemented or provisioned feature.
+
+The guest demonstration can deploy without a database. No paid plan or upgrade is assumed; check the actual bundled Worker limits against the account plan before publishing. Your portfolio remains on Cloudflare Pages. The application goes to a separate Worker, with `radio.alextraynham.com` as the intended custom domain.
 
 ## Public/internal boundary
 
 Separate deployments, databases, identities, secrets, content pipelines, repositories and analytics. The public build includes only invented content. Personal hosting is never the destination for an internal content import. A future company deployment requires a named sponsor, content owner, approved hosting and identity, permission to record training data, retention rules and security review. An email allowlist is not organizational authorization.
 
-References checked during architecture selection: https://vercel.com/docs/plans/hobby ; https://developers.cloudflare.com/workers/static-assets/ ; https://developers.cloudflare.com/d1/platform/pricing/ ; https://better-auth.com/docs/adapters/drizzle ; https://better-auth.com/docs/concepts/rate-limit .
+References: https://developers.cloudflare.com/workers/framework-guides/web-apps/opennext/ ; https://opennext.js.org/cloudflare/get-started ; https://opennext.js.org/cloudflare/howtos/env-vars ; https://better-auth.com/docs/adapters/drizzle .

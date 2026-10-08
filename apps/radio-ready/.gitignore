@@ -7,3 +7,7 @@ node_modules/
 playwright-report/
 test-results/
 *.tsbuildinfo
+
+.open-next/
+.wrangler/
+.dev.vars*

@@ -1,6 +1,20 @@
 import type { NextConfig } from "next";
 const config: NextConfig = {
   poweredByHeader: false,
+  // Let OpenNext choose Workers-specific exports; include files Node tracing omits.
+  serverExternalPackages: [
+    "@libsql/client",
+    "@libsql/hrana-client",
+    "@libsql/core",
+  ],
+  outputFileTracingIncludes: {
+    "/*": [
+      "./node_modules/@libsql/**/*.js",
+      "./node_modules/@libsql/**/*.mjs",
+      "./node_modules/@libsql/**/*.cjs",
+      "./node_modules/@libsql/**/package.json",
+    ],
+  },
   async headers() {
     return [
       {

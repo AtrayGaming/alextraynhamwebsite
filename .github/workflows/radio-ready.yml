@@ -12,6 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     strategy:
+      fail-fast: false
       matrix:
         include:
           - { suite: api, browser: chromium }
@@ -45,3 +46,22 @@ jobs:
         run: npm run test:e2e
         env:
           BROWSER: ${{ matrix.browser }}
+
+  cloudflare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: apps/radio-ready
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: apps/radio-ready/package-lock.json
+      - run: npm ci
+      - run: npm run build:cloudflare
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/verify-cloudflare.mjs
+      - run: npx wrangler deploy --dry-run

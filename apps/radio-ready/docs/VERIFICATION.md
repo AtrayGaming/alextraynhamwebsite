@@ -23,7 +23,7 @@ The separate portfolio case-study page also passed desktop/mobile axe checks, a 
 
 ## Release gates still open
 
-- Vercel project creation, public HTTPS deployment, domain/DNS verification, and remote database provisioning.
+- Cloudflare Worker deployment, public HTTPS/domain verification, and remote database provisioning.
 - Remote database migration, cross-device persistence, production cookie behavior, backup/restore, and rollback exercise.
 - WebKit verification completion, physical Safari/mobile coverage, a screen-reader/manual accessibility review, and realistic concurrent-load testing.
 - Real-account enrollment and recovery policy, MFA/SSO for a broader audience, account retention/deletion procedure, and a privacy review before recording real learning activity.
@@ -31,3 +31,7 @@ The separate portfolio case-study page also passed desktop/mobile axe checks, a 
 - CSP currently permits inline scripts needed by the generated Next.js pages; adopt a nonce-based dynamic CSP if stronger script injection mitigation is required for a broader authenticated rollout.
 
 The internal company deployment has not been approved or built. All tests use fictional content and local synthetic identities. No learning efficacy or adoption statistics have been measured.
+
+## Cloudflare migration checks
+
+The final pre-migration GitHub run exposed an intermittent Chromium skip-link focus assertion; the app now explicitly focuses the target, and the test waits for that focus instead of reading it immediately. Firefox and WebKit browser steps passed in that run, although fail-fast cancellation affected their overall job status. The workflow now disables fail-fast so every browser result is retained. OpenNext produced a Worker bundle after explicitly tracing the libSQL Workers files. A generated-output cleanup step prevents stale environment declarations on repeated builds. The first local runtime attempt was blocked by this execution environment’s network-interface enumeration restriction (`uv_interface_addresses`); GitHub now includes a separate Workers runtime job. No cloud deployment or remote-database verification is claimed.

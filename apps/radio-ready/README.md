@@ -1,6 +1,6 @@
 # Radio Ready 2.0
 
-A standalone learning application and public portfolio demonstration by Alex Traynham. Native Next.js, React, TypeScript, Better Auth, Drizzle and libSQL. No ChatGPT Sites runtime or hosting dependency.
+A standalone learning application and public portfolio demonstration by Alex Traynham. Native Next.js, React, TypeScript, Better Auth, Drizzle and libSQL, deployed through OpenNext on Cloudflare Workers. No ChatGPT Sites runtime or hosting dependency.
 
 All included content is newly invented: 45 community-festival concepts and eight scenarios. Nothing in this repository is an operational reference.
 
@@ -58,6 +58,8 @@ This creates random local-only fixture credentials under ignored `.data/`. Never
 
 ## Deployment status
 
-The app is prepared for an independent Vercel deployment. Deployment was blocked by the connected service's project-creation permissions; no live Vercel URL or custom domain is claimed. Cloud account services also require a separately provisioned remote libSQL database. On an unconfigured deployment the guest demo works and account services fail closed.
+Cloudflare Workers is the deployment target, using `wrangler.jsonc` and a pinned OpenNext adapter. Run `npm run build:cloudflare`, `npm run preview:cloudflare` for a local Workers preview, and `npm run deploy:cloudflare` only after selecting the correct Cloudflare account. The app root is `apps/radio-ready`; the portfolio root remains a separate Pages site.
+
+No independent Worker or custom domain has been deployed yet. The local Wrangler CLI is not authenticated. Account services additionally need a provisioned remote libSQL database. Without account configuration, the fictional guest demo works and restricted services fail closed. No company content belongs in this deployment.
 
 See [the audit](docs/AUDIT.md), [design decisions](docs/DESIGN.md), and [deployment/operations guide](docs/OPERATIONS.md). The original internal project is deliberately excluded. Internal use requires a separate company-approved environment, identity system, content owner and data policy.

@@ -1,8 +1,10 @@
 import { chromium, firefox, webkit } from "playwright";
+import { expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import assert from "node:assert/strict";
 import { mkdirSync, writeFileSync, readFileSync } from "node:fs";
 const engine = process.env.BROWSER || "chromium";
+const base = process.env.TEST_BASE_URL || "http://localhost:3000";
 const browser = await { chromium, firefox, webkit }[engine].launch({
   ...(process.env.CHROMIUM_EXECUTABLE
     ? {
@@ -22,7 +24,7 @@ const errors = [];
 page.on("pageerror", (e) => errors.push(e.message));
 const checks = [];
 try {
-  await page.goto("http://localhost:3000/");
+  await page.goto(`${base}/`);
   await page.getByRole("link", { name: "Explore the practice studio" }).click();
   await page.getByRole("heading", { name: "Your practice studio." }).waitFor();
   await page
@@ -52,9 +54,7 @@ try {
     .getByRole("button", { name: "Start Quick Match", exact: true })
     .click();
   await page.getByRole("heading", { name: "Make the connection." }).waitFor();
-  const content = await (
-    await page.request.get("http://localhost:3000/api/content")
-  ).json();
+  const content = await (await page.request.get(`${base}/api/content`)).json();
   // Deliberately miss the first question, then clear every concept.
   let cue = await page.locator(".question-card h2").textContent();
   let item = content.items.find((x) => x.cue === cue);
@@ -142,7 +142,7 @@ try {
     "Mobile accessibility",
   );
   checks.push("Mobile layout and accessibility");
-  await page.goto("http://localhost:3000/");
+  await page.goto(`${base}/`);
   assert.ok(
     await page.evaluate(
       () => document.documentElement.scrollWidth <= innerWidth,
@@ -162,7 +162,7 @@ try {
     "Landing accessibility",
   );
   checks.push("Landing accessibility");
-  await page.goto("http://localhost:3000/case-study");
+  await page.goto(`${base}/case-study`);
   await page
     .getByRole("heading", { name: "Making practice feel purposeful." })
     .waitFor();
@@ -173,7 +173,7 @@ try {
     viewport: { width: 1280, height: 900 },
   });
   const accountPage = await accountContext.newPage();
-  await accountPage.goto("http://localhost:3000/practice");
+  await accountPage.goto(`${base}/practice`);
   await accountPage
     .getByRole("heading", { name: "Your practice studio." })
     .waitFor();
@@ -183,61 +183,69 @@ try {
     "Skip to content",
   );
   await accountPage.keyboard.press("Enter");
-  assert.equal(await accountPage.locator(":focus").getAttribute("id"), "main");
+  await expect(accountPage.locator("#main")).toBeFocused();
   checks.push("Keyboard skip navigation");
-  const fixture = JSON.parse(readFileSync(".data/test-accounts.json", "utf8"));
-  await accountPage
-    .getByRole("button", { name: "Sign in", exact: true })
-    .click();
-  await accountPage
-    .getByLabel("Email", { exact: true })
-    .fill(fixture.adminA.email);
-  await accountPage
-    .getByLabel("Password", { exact: true })
-    .fill(fixture.adminA.password);
-  await accountPage
-    .locator("form")
-    .getByRole("button", { name: "Sign in", exact: true })
-    .click();
-  await accountPage
-    .getByRole("button", { name: "Content library", exact: true })
-    .waitFor();
-  await accountPage
-    .getByRole("button", { name: "Content library", exact: true })
-    .click();
-  await accountPage
-    .getByRole("button", { name: "Create a concept", exact: true })
-    .click();
-  await accountPage
-    .getByLabel("Label / title", { exact: true })
-    .fill("DEMO–PAPER UI CHECK");
-  await accountPage
-    .getByLabel("Correct answer", { exact: true })
-    .fill("Paper sculpture");
-  await accountPage
-    .getByLabel("scenario", { exact: true })
-    .fill("An imaginary visitor wants to fold a paper sculpture.");
-  await accountPage
-    .getByLabel("explanation", { exact: true })
-    .fill("An invented creative activity for this interface check.");
-  await accountPage.getByRole("checkbox").check();
-  await accountPage
-    .getByRole("button", { name: "Save draft", exact: true })
-    .click();
-  await accountPage
-    .getByText("Draft saved. Submit it for a separate publishing review.")
-    .waitFor();
-  const draftRow = accountPage
-    .locator(".content-versions article")
-    .filter({ hasText: "DEMO–PAPER UI CHECK" })
-    .first();
-  await draftRow
-    .getByRole("button", { name: "Submit for review", exact: true })
-    .click();
-  await accountPage
-    .getByText("Version 1 submitted for review.", { exact: true })
-    .waitFor();
-  checks.push("Real administrator login, draft editor and review submission");
+  if (process.env.PUBLIC_DEMO !== "1") {
+    const fixture = JSON.parse(
+      readFileSync(".data/test-accounts.json", "utf8"),
+    );
+    await accountPage
+      .getByRole("button", { name: "Sign in", exact: true })
+      .click();
+    await accountPage
+      .getByLabel("Email", { exact: true })
+      .fill(fixture.adminA.email);
+    await accountPage
+      .getByLabel("Password", { exact: true })
+      .fill(fixture.adminA.password);
+    await accountPage
+      .locator("form")
+      .getByRole("button", { name: "Sign in", exact: true })
+      .click();
+    await accountPage
+      .getByRole("button", { name: "Content library", exact: true })
+      .waitFor();
+    await accountPage
+      .getByRole("button", { name: "Content library", exact: true })
+      .click();
+    await accountPage
+      .getByRole("button", { name: "Create a concept", exact: true })
+      .click();
+    await accountPage
+      .getByLabel("Label / title", { exact: true })
+      .fill("DEMO–PAPER UI CHECK");
+    await accountPage
+      .getByLabel("Correct answer", { exact: true })
+      .fill("Paper sculpture");
+    await accountPage
+      .getByLabel("scenario", { exact: true })
+      .fill("An imaginary visitor wants to fold a paper sculpture.");
+    await accountPage
+      .getByLabel("explanation", { exact: true })
+      .fill("An invented creative activity for this interface check.");
+    await accountPage.getByRole("checkbox").check();
+    await accountPage
+      .getByRole("button", { name: "Save draft", exact: true })
+      .click();
+    await accountPage
+      .getByText("Draft saved. Submit it for a separate publishing review.")
+      .waitFor();
+    const draftRow = accountPage
+      .locator(".content-versions article")
+      .filter({ hasText: "DEMO–PAPER UI CHECK" })
+      .first();
+    await draftRow
+      .getByRole("button", { name: "Submit for review", exact: true })
+      .click();
+    await accountPage
+      .getByText("Version 1 submitted for review.", { exact: true })
+      .waitFor();
+    checks.push("Real administrator login, draft editor and review submission");
+  } else {
+    const response = await accountPage.request.get(`${base}/api/config`);
+    assert.equal((await response.json()).accounts, false);
+    checks.push("Unconfigured account services explicitly disabled");
+  }
   await accountContext.close();
 
   console.log(JSON.stringify({ browser: engine, passed: checks }, null, 2));

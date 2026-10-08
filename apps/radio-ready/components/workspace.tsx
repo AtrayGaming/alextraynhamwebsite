@@ -294,7 +294,11 @@ export function Workspace() {
   }
   return (
     <div className={`workspace ${focusMode ? "presentation" : ""}`}>
-      <a className="skip-link" href="#main">
+      <a
+        className="skip-link"
+        href="#main"
+        onClick={() => document.getElementById("main")?.focus()}
+      >
         Skip to content
       </a>
       <aside className="sidebar">

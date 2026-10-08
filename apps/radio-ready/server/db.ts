@@ -12,10 +12,10 @@ export function configured() {
 export function getClient() {
   if (!process.env.DATABASE_URL) throw new Error("Database not configured");
   if (
-    process.env.VERCEL &&
+    process.env.CLOUDFLARE_WORKER === "1" &&
     !/^(libsql|https):\/\//.test(process.env.DATABASE_URL)
   )
-    throw new Error("A remote database is required on Vercel");
+    throw new Error("A remote database is required on Cloudflare Workers");
   return (client ??= createClient({
     url: process.env.DATABASE_URL,
     authToken: process.env.DATABASE_AUTH_TOKEN,
