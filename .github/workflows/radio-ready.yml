@@ -3,13 +3,14 @@ on:
   pull_request:
     paths: ['apps/radio-ready/**', '.github/workflows/radio-ready.yml']
   push:
-    branches: [radio-ready-2, main]
+    branches: [main]
     paths: ['apps/radio-ready/**', '.github/workflows/radio-ready.yml']
 permissions:
   contents: read
 jobs:
   verify:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     strategy:
       matrix:
         include:

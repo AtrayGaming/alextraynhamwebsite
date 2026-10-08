@@ -1,6 +1,6 @@
 # Radio Ready source audit and migration decision
 
-Audited 2026-10-08. Original source commit: 1bbddfb6b867ddedf3069f2b8eea22522d430e2b. Source recovered through the owner's Sites connection. The original repository and its internal content are excluded from this new project.
+Audited 2026-10-08. Source recovered through the owner's Sites connection. The original repository and its internal content are excluded from this new project.
 
 ## Findings from source inspection
 

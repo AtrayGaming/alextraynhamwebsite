@@ -169,7 +169,7 @@ export function Workspace() {
     setBusy(true);
     setError("");
     try {
-      const cat = nextMode === "scenario" ? "All" : category;
+      const cat = review || nextMode === "scenario" ? "All" : category;
       let s: Practice;
       if (user) {
         const r = await api<{ session: Practice }>("sessions", {

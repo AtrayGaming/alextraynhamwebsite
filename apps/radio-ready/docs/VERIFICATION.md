@@ -17,7 +17,7 @@ Verified locally on 2026-10-08 against an optimized Next.js production build. Th
 
 Use Node 22.13+, `npm ci`, a local `.env.local`, `npm run db:setup`, and `node --env-file=.env.local --import tsx scripts/test-accounts.ts`. Then build, run `node scripts/run-verification.mjs` for real API/engine checks, and `npm run test:e2e` for browser checks after installing Playwright Chromium. Fixture credentials are random, local-only, and ignored by Git. Allow the login rate-limit window to expire between repeated full authentication runs; do not disable the production limit.
 
-The test host required a separately installed Chromium executable because the standard Playwright download failed. The suite still used real Playwright browser interactions and axe. No Firefox, Safari/WebKit, physical iOS, or physical Android verification is claimed.
+The test host required a separately installed Chromium executable because the standard Playwright download failed. The suite still used real Playwright browser interactions and axe. The GitHub clean-runner checks subsequently passed for the API suite and Chromium and Firefox browser flows. The WebKit job is configured but its result was pending when this report was written. No physical iOS or physical Android verification is claimed. CI evidence: https://github.com/AtrayGaming/alextraynhamwebsite/actions/runs/37801915178 and https://github.com/AtrayGaming/alextraynhamwebsite/actions/runs/37802275227 .
 
 The separate portfolio case-study page also passed desktop/mobile axe checks, a narrow-layout overflow check, and navigation from the new homepage card.
 
@@ -25,7 +25,7 @@ The separate portfolio case-study page also passed desktop/mobile axe checks, a 
 
 - Vercel project creation, public HTTPS deployment, domain/DNS verification, and remote database provisioning.
 - Remote database migration, cross-device persistence, production cookie behavior, backup/restore, and rollback exercise.
-- Firefox/WebKit coverage, a screen-reader/manual accessibility review, and realistic concurrent-load testing.
+- WebKit verification completion, physical Safari/mobile coverage, a screen-reader/manual accessibility review, and realistic concurrent-load testing.
 - Real-account enrollment and recovery policy, MFA/SSO for a broader audience, account retention/deletion procedure, and a privacy review before recording real learning activity.
 - Analytics are bounded to 2,000 recent sessions and have basic cohort suppression. They are not an enterprise reporting warehouse or an anonymity guarantee.
 - CSP currently permits inline scripts needed by the generated Next.js pages; adopt a nonce-based dynamic CSP if stronger script injection mitigation is required for a broader authenticated rollout.
