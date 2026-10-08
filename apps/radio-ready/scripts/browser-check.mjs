@@ -24,7 +24,16 @@ const errors = [];
 page.on("pageerror", (e) => errors.push(e.message));
 const checks = [];
 try {
-  await page.goto(`${base}/`);
+  const landing = await page.goto(`${base}/`);
+  if (process.env.PUBLIC_DEMO === "1") {
+    console.log(JSON.stringify({
+      origin: base,
+      status: landing?.status(),
+      title: await page.title(),
+      mitigation: landing?.headers()["cf-mitigated"] || null,
+    }));
+  }
+  assert.equal(landing?.status(), 200, "Landing page HTTP status");
   await page.getByRole("link", { name: "Explore the practice studio" }).click();
   await page.getByRole("heading", { name: "Your practice studio." }).waitFor();
   await page

@@ -10,6 +10,10 @@ jobs:
   public-browser:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        origin: [https://radio.alextraynham.com, https://radio-ready.traynham.workers.dev]
     defaults:
       run:
         working-directory: apps/radio-ready
@@ -25,5 +29,5 @@ jobs:
       - name: Verify deployed fictional demo
         run: node scripts/browser-check.mjs
         env:
-          TEST_BASE_URL: https://radio.alextraynham.com
+          TEST_BASE_URL: ${{ matrix.origin }}
           PUBLIC_DEMO: '1'
