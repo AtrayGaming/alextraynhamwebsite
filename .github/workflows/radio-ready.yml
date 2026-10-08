@@ -1,0 +1,40 @@
+name: Radio Ready checks
+on:
+  pull_request:
+    paths: ['apps/radio-ready/**', '.github/workflows/radio-ready.yml']
+  push:
+    branches: [radio-ready-2, main]
+    paths: ['apps/radio-ready/**', '.github/workflows/radio-ready.yml']
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        suite: [api, browser]
+    defaults:
+      run:
+        working-directory: apps/radio-ready
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: apps/radio-ready/package-lock.json
+      - run: npm ci
+      - name: Prepare isolated local test database
+        run: |
+          cp .env.example .env.local
+          node -e 'const fs=require("node:fs"),c=require("node:crypto");fs.appendFileSync(".env.local", "\nBETTER_AUTH_SECRET="+c.randomBytes(32).toString("hex")+"\n")'
+          npm run db:setup
+          node --env-file=.env.local --import tsx scripts/test-accounts.ts
+      - run: npm run typecheck
+      - run: npm run build
+      - if: matrix.suite == 'api'
+        run: node scripts/run-verification.mjs
+      - if: matrix.suite == 'browser'
+        run: npx playwright install --with-deps chromium
+      - if: matrix.suite == 'browser'
+        run: npm run test:e2e
