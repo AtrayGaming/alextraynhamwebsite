@@ -15,7 +15,7 @@
     "test:e2e": "node scripts/run-verification.mjs --browser-only",
     "db:setup": "node --env-file=.env.local --import tsx scripts/setup.ts",
     "account:create": "node --env-file=.env.local --import tsx scripts/create-account.ts",
-    "build:cloudflare": "node scripts/clean-worker.mjs && opennextjs-cloudflare build",
+    "build:cloudflare": "node scripts/patch-opennext.mjs && node scripts/clean-worker.mjs && opennextjs-cloudflare build",
     "preview:cloudflare": "opennextjs-cloudflare preview",
     "deploy:cloudflare": "opennextjs-cloudflare deploy -- --keep-vars"
   },
