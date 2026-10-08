@@ -1,62 +1,29 @@
-// ── Nav: add 'scrolled' class for subtle border on scroll
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 10);
-}, { passive: true });
-
-// ── Mobile nav toggle
-const navToggle = document.getElementById('navToggle');
-const navLinks  = document.getElementById('navLinks');
-
-navToggle.addEventListener('click', () => {
-  const isOpen = navLinks.classList.toggle('open');
-  navToggle.setAttribute('aria-expanded', isOpen);
+document.documentElement.classList.add('js');
+const toggle = document.querySelector('.menu-toggle');
+const links = document.getElementById('navLinks');
+function closeMenu(restoreFocus = false) {
+  if (!toggle || !links) return;
+  links.classList.remove('open');
+  toggle.setAttribute('aria-expanded', 'false');
+  toggle.textContent = 'Menu';
+  if (restoreFocus) toggle.focus();
+}
+toggle?.addEventListener('click', () => {
+  const open = links.classList.toggle('open');
+  toggle.setAttribute('aria-expanded', String(open));
+  toggle.textContent = open ? 'Close' : 'Menu';
 });
-
-// Close mobile nav when a link is clicked
-navLinks.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => {
-    navLinks.classList.remove('open');
-    navToggle.setAttribute('aria-expanded', false);
-  });
+links?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => closeMenu()));
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && links?.classList.contains('open')) closeMenu(true);
 });
-
-// ── Active nav link highlighting on scroll
-const sections = document.querySelectorAll('section[id], div[id="top"]');
-const navAnchors = document.querySelectorAll('.nav-links a[href^="#"]');
-
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const id = entry.target.id;
-      navAnchors.forEach(a => {
-        a.classList.toggle('active', a.getAttribute('href') === `#${id}`);
-      });
-    }
+document.querySelectorAll('[data-video]').forEach(button => {
+  button.addEventListener('click', () => {
+    const shell = button.closest('.video-shell');
+    const frame = shell.querySelector('iframe');
+    frame.src = `https://www.youtube-nocookie.com/embed/${button.dataset.video}`;
+    frame.hidden = false;
+    shell.querySelector('.video-placeholder').hidden = true;
+    frame.focus();
   });
-}, {
-  rootMargin: '-20% 0px -70% 0px',
-  threshold: 0
-});
-
-document.querySelectorAll('section[id]').forEach(s => observer.observe(s));
-
-// ── Subtle fade-in on scroll for cards
-const fadeEls = document.querySelectorAll('.identity-item, .project-card, .timeline-item, .about-card, .education-panel, .cert-item, .skill-group');
-
-const fadeObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.style.opacity = '1';
-      entry.target.style.transform = 'translateY(0)';
-      fadeObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.1 });
-
-fadeEls.forEach(el => {
-  el.style.opacity = '0';
-  el.style.transform = 'translateY(16px)';
-  el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-  fadeObserver.observe(el);
 });
