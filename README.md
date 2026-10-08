@@ -23,3 +23,7 @@ Keep independent concepts, academic work, published work, and future tests clear
 For new case studies, use this sequence: opportunity, audience, objective, personal role, strategy, visible deliverables, distribution, measurement, limits, and reflection. Publish the evidence on the page; use PDFs as supporting detail.
 
 When adding a page, add its canonical URL to `sitemap.xml`. Bump the CSS/JS query version after shared asset changes. Check internal links, narrow layouts, keyboard navigation, reduced motion, and the direct YouTube fallback. The player loads only on request and does not require site JavaScript for the external viewing link.
+
+## Radio Ready
+
+`radio-ready.html` is a sanitized product case study. `apps/radio-ready` is a separate Next.js application with its own README and deployment configuration. The portfolio remains a static site. Deploy the app separately with that subdirectory as its root; do not change the portfolio build command. Public app hosting is pending.
