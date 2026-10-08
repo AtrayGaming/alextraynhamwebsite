@@ -46,6 +46,24 @@ For production, enable the database provider's backup/recovery option under the 
 
 Record each deployed Git SHA and schema version. Prefer additive database changes compatible with the previous application. Roll back the application to the prior tested Cloudflare Worker version, then verify public routes, login, and a saved-session read. Application rollback does not undo database migrations or content publishing. Revert content through a new reviewed revision; never mutate a revision pinned by an existing practice session. For a breaking schema rollback, use a separately verified database restore and document any lost writes.
 
-## Current external blockers
+## Deployment checkpoint: 2026-10-08
 
-The owner selected Cloudflare, replacing the earlier hosting recommendation. Wrangler reports that this environment is unauthenticated. No Cloudflare management connector is available in the session. The existing portfolio Pages integration can create static branch previews, but it does not deploy this Next.js backend. Publishing the separate Worker requires authorized Cloudflare account access; account persistence requires a remote database; the requested hostname requires zone access. No paid service has been purchased.
+Cloudflare account access is confirmed through the connector. The active `alextraynham.com` zone is in the same account. No existing Worker or DNS record conflicted with `radio-ready` or `radio.alextraynham.com`. The portfolio Pages configuration, apex DNS, and nameservers were left unchanged.
+
+- Worker: `radio-ready`, tag `55140aa9c18b478f895f5a443a55bb4e`. This is a bootstrap returning 503, not the application. Both workers.dev and preview URLs are disabled pending deployment.
+- Build trigger: `638a938d-adf2-4751-a80b-627595564b40`, named Radio Ready public demo.
+- Repository: `AtrayGaming/alextraynhamwebsite`, branch `radio-ready-2`, root `/apps/radio-ready`.
+- Build/deploy: `npm run build:cloudflare` / `npm run deploy:cloudflare`.
+- Build environment: Node 22.22.3; Next telemetry disabled. No account/database credentials provisioned.
+- The trigger references the existing Cloudflare-managed build token labeled `x402-proxy-template build token`. Its secret was neither retrieved nor copied. After reconnecting GitHub, review the token in Cloudflare and prefer a dedicated Radio Ready deployment token. No credential was added to GitHub or this repository.
+- Attempted build `8e0f4802-b1aa-4e4d-b539-042683811a4d` stopped before compilation: “unable to access repository.” The separate Pages Git integration does not establish Workers Builds repository access.
+
+**Owner action:** In Cloudflare Workers & Pages, open `radio-ready` and its build settings. Reconnect/configure the GitHub integration and grant it access to `AtrayGaming/alextraynhamwebsite`. This account installation grant requires the owner's authorization. Then rerun the existing build against the verified branch. Do not change the portfolio Pages project.
+
+After successful deployment, verify the workers.dev app, then attach `radio.alextraynham.com` and repeat public-route, fictional-content, browser, accessibility, and fail-closed account checks over HTTPS. The custom domain is intentionally unattached until the app is ready. No paid plan or service has been purchased.
+
+## OpenNext compatibility
+
+The pinned OpenNext 1.20.9 build omits Next 16.4's `preview-props.json` manifest. `scripts/patch-opennext.mjs` applies a narrow, idempotent, version-checked glob fix before the Cloudflare build; see upstream `opennextjs/opennextjs-cloudflare#1356`. An adapter upgrade must review/remove this patch and rerun the Workers runtime tests. It does not alter application training content or security checks.
+
+Account persistence still requires a separate remote libSQL database and verification. Internal company training still requires a separately approved organizational deployment.

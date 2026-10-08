@@ -25,7 +25,7 @@ The separate portfolio case-study page also passed desktop/mobile axe checks, a 
 
 - Cloudflare Worker deployment, public HTTPS/domain verification, and remote database provisioning.
 - Remote database migration, cross-device persistence, production cookie behavior, backup/restore, and rollback exercise.
-- WebKit verification completion, physical Safari/mobile coverage, a screen-reader/manual accessibility review, and realistic concurrent-load testing.
+- Physical Safari/mobile coverage, a screen-reader/manual accessibility review, and realistic concurrent-load testing.
 - Real-account enrollment and recovery policy, MFA/SSO for a broader audience, account retention/deletion procedure, and a privacy review before recording real learning activity.
 - Analytics are bounded to 2,000 recent sessions and have basic cohort suppression. They are not an enterprise reporting warehouse or an anonymity guarantee.
 - CSP currently permits inline scripts needed by the generated Next.js pages; adopt a nonce-based dynamic CSP if stronger script injection mitigation is required for a broader authenticated rollout.
@@ -37,3 +37,11 @@ The internal company deployment has not been approved or built. All tests use fi
 The final pre-migration GitHub run exposed an intermittent Chromium skip-link focus assertion; the app now explicitly focuses the target, and the test waits for that focus instead of reading it immediately. Firefox and WebKit browser steps passed in that run, although fail-fast cancellation affected their overall job status. The workflow now disables fail-fast so every browser result is retained. OpenNext produced a Worker bundle after explicitly tracing the libSQL Workers files. A generated-output cleanup step prevents stale environment declarations on repeated builds. The first local runtime attempt was blocked by this execution environment’s network-interface enumeration restriction (`uv_interface_addresses`); GitHub now includes a separate Workers runtime job. No cloud deployment or remote-database verification is claimed.
 
 The Cloudflare deploy dry run passed with a compressed Worker size of 1,289.90 KiB. On the Cloudflare migration commit, the GitHub API suite and Chromium, Firefox and WebKit jobs all passed. The separate Workers runtime job remained pending; its harness now terminates the full OpenNext/Wrangler process group and bounds startup requests so a failed preview cannot hang verification indefinitely. CI run: https://github.com/AtrayGaming/alextraynhamwebsite/actions/runs/37843140820 .
+
+## Latest verified application revision
+
+Commit `11fa0fcd15ed092decf2f368d70b4f5b4a62149e` passed all five GitHub jobs: API/learning engine, Chromium, Firefox, WebKit, and Cloudflare Workers runtime. Evidence: https://github.com/AtrayGaming/alextraynhamwebsite/actions/runs/37849360569 .
+
+The Workers job builds OpenNext, runs the actual local workerd runtime, validates all three public routes and security headers, verifies all 53 items are fictional, confirms account APIs fail closed without configuration, and exercises public browser interactions and axe checks. The preview-manifest compatibility fix resolves the prior runtime 500. The deploy dry run also passed (1,289.92 KiB compressed).
+
+This establishes Workers-runtime compatibility, not successful production hosting. Cloudflare's first remote build stopped before compilation because its GitHub integration cannot access the repository. No production app, custom domain, remote database, or production auth verification is claimed. See OPERATIONS.md for the exact deployment checkpoint and owner action.
