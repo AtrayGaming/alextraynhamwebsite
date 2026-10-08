@@ -12,6 +12,7 @@ const server = spawn(
     "127.0.0.1",
   ],
   {
+    detached: process.platform !== "win32",
     stdio: ["ignore", "pipe", "pipe"],
     env: { ...process.env, WRANGLER_SEND_METRICS: "false" },
   },
@@ -21,10 +22,17 @@ server.stdout.on("data", (d) => (logs += d));
 server.stderr.on("data", (d) => (logs += d));
 try {
   let ready = false;
-  for (let i = 0; i < 240; i++) {
+  const deadline = Date.now() + 60000;
+  while (Date.now() < deadline) {
     if (server.exitCode !== null) throw Error("Worker exited: " + logs);
     try {
-      if ((await fetch(`${base}/api/config`)).ok) {
+      if (
+        (
+          await fetch(`${base}/api/config`, {
+            signal: AbortSignal.timeout(1000),
+          })
+        ).ok
+      ) {
         ready = true;
         break;
       }
@@ -55,5 +63,13 @@ try {
     "Workers runtime: all public routes, fictional content, fail-closed accounts and browser flows passed.",
   );
 } finally {
-  server.kill("SIGTERM");
+  // OpenNext starts Wrangler/workerd children; terminate the whole test process group.
+  try {
+    if (process.platform === "win32") server.kill("SIGTERM");
+    else process.kill(-server.pid, "SIGTERM");
+  } catch (error) {
+    if (error.code !== "ESRCH") throw error;
+  }
+  server.stdout.destroy();
+  server.stderr.destroy();
 }
