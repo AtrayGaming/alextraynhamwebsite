@@ -5,3 +5,7 @@
 @media(max-width:390px){.storyboard,.case-meta{grid-template-columns:1fr}.nav-links{gap:14px}.portrait-note{display:none}.hero h1{font-size:2.65rem}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important;animation:none!important}.project:hover{transform:none}}
 @media print{.site-header,.footer,.case-nav,.actions,.case-next,.video-placeholder button{display:none}.wrap{width:100%}.section,.case-section{padding:24px 0}.hero{padding:20px 0}.project,.panel,.story-frame{break-inside:avoid}body{font-size:11pt;color:black;background:white}a{color:black}.case-section{display:block}.section-label{margin-bottom:12px}}
+
+/* Keep compact metadata legible at narrow widths. */
+.archive-item .status,.frame-copy .shot,.thumb-wire span,.shot-zones,.case-meta dt{font-size:.8rem}
+.js .menu-toggle{min-height:44px}

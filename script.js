@@ -21,7 +21,7 @@ document.querySelectorAll('[data-video]').forEach(button => {
   button.addEventListener('click', () => {
     const shell = button.closest('.video-shell');
     const frame = shell.querySelector('iframe');
-    frame.src = `https://www.youtube-nocookie.com/embed/${button.dataset.video}`;
+    frame.src = `https://www.youtube-nocookie.com/embed/${button.dataset.video}?rel=0`;
     frame.hidden = false;
     shell.querySelector('.video-placeholder').hidden = true;
     frame.focus();
