@@ -10,17 +10,17 @@ The site should feel like opening the working portfolio of someone with ideas an
 
 ## Visual system
 
-| Element | Choice | Purpose |
-|---|---|---|
-| Paper | `#f5f3ec` | Warmer, less clinical reading surface |
-| Ink | `#202723` | Strong type and a grounded visual anchor |
-| Lime | `#d9f36b` | One intentional accent for ideas, active choices and contact |
-| Apricot | `#f3a978` | Guest-experience project identity |
-| Type | System Arial/Helvetica display, Georgia italic, Courier New labels | Big confident statements, personal annotations, useful small labels; no font network requests |
-| Layout | Shared 1280px container; 1160px reading pages | Expansive home composition and controlled case-study reading width |
-| Shapes | Rules, rectangles, a print-like portrait, editorial diagrams | Avoid generic floating cards and gradients |
-| Movement | Small hover changes and manual content selection | Feedback tied to an action; no loading theater or scroll traps |
-| Navigation | Work, person, résumé, contact | Familiar paths while the work provides the surprise |
+| Element    | Choice                                                             | Purpose                                                                                       |
+| ---------- | ------------------------------------------------------------------ | --------------------------------------------------------------------------------------------- |
+| Paper      | `#f5f3ec`                                                          | Warmer, less clinical reading surface                                                         |
+| Ink        | `#202723`                                                          | Strong type and a grounded visual anchor                                                      |
+| Lime       | `#d9f36b`                                                          | One intentional accent for ideas, active choices and contact                                  |
+| Apricot    | `#f3a978`                                                          | Guest-experience project identity                                                             |
+| Type       | System Arial/Helvetica display, Georgia italic, Courier New labels | Big confident statements, personal annotations, useful small labels; no font network requests |
+| Layout     | Shared 1280px container; 1160px reading pages                      | Expansive home composition and controlled case-study reading width                            |
+| Shapes     | Rules, rectangles, a print-like portrait, editorial diagrams       | Avoid generic floating cards and gradients                                                    |
+| Movement   | Small hover changes and manual content selection                   | Feedback tied to an action; no loading theater or scroll traps                                |
+| Navigation | Work, person, résumé, contact                                      | Familiar paths while the work provides the surprise                                           |
 
 ## Visitor sequence
 
