@@ -1,0 +1,51 @@
+# Portfolio version audit
+
+Review date: October 15, 2026. Repository: `AtrayGaming/alextraynhamwebsite`.
+
+## Scope and provenance
+
+GitHub search across open/closed/merged PRs returned **two PRs**, both open and unmerged at review. No closed or merged PRs were found. All five branch tips were fetched. The full 50-commit history available at review was inspected by subject, with source/diffs examined for the meaningful design milestones below. Minor copy and cache-busting commits were evaluated in their resulting milestone, not treated as separate design concepts. Do not attribute a design to a particular AI model: repository evidence does not establish authorship by model.
+
+Production was fetched directly over HTTPS and matched the current main hero and page structure. Search-engine retrieval initially showed an older cached site; it was not treated as current production. Cloudflare confirmed production commit `434df2f6a84a4053fc408d5884c0c207400f6240` on `main`. Production was not modified.
+
+## PR comparison
+
+| Version | Intent and changes | Visual / UX strengths | Content / technical strengths | Problems or limits | Selected for the rebuild |
+|---|---|---|---|---|---|
+| [PR #1: Radio Ready 2.0](https://github.com/AtrayGaming/alextraynhamwebsite/pull/1), draft; `radio-ready-2` at `ede4d79` | Separate learning application, four practice modes, finite matching sessions, backend/content workflow, Cloudflare deployment, public portfolio case study | Actual product captures; distinct modes; completion feedback; product decisions grounded in a tryout and a print test | Specific challenge → decision → iteration narrative; fictional public data; clear distinction between deployed guest mode and pending account services; automated engine/API/browser checks documented | Application infrastructure is much larger than a portfolio needs. Account/database production setup remains pending. Historical verification claims belong to the app and cannot be reused as proof for this rebuild. Case-study visual design was still the old shared portfolio skin | Bring the case study and actual screenshot into featured work. Preserve the print-test lesson and finite-session reasoning. Optimize the screenshot. Link the separately hosted app and its source; leave its Worker, source branch and backend untouched |
+| [PR #2: Proof-first rebuild](https://github.com/AtrayGaming/alextraynhamwebsite/pull/2), open; `proof-rebuild` at `3db4e4e` | Rewrite positioning and guest case around training records, tools, commissioning and recognition; add Record section/navigation | More explicit proof and a quick route to relevant professional evidence | Connects operations to things Alex made; emphasizes ownership and tangible resources; keeps plain HTML/CSS/JS | No new visual direction; four more cards duplicate the résumé and displace creative work. “Most trainers…” comparison and “tools the program runs on” overstate or compare unnecessarily. Exact counts cite a newer résumé unavailable in this repo, while the linked PDF remains older. Incident/dispatch details do not help the public marketing story | Keep the principle of demonstrating completed work, the `#proof` destination, commissioning/training credibility, and high-level resource creation. Show the actual public tool. Do not publish unsupported new counts, departmental product details, incident specifics or internal recognition-point values |
+
+## Branches and historical design comparison
+
+| Source | What was strong | What did not carry forward | Decision |
+|---|---|---|---|
+| `main` / `portfolio-career-redesign`, both `434df2f` | Three substantive HTML cases; honest sample-size limits; defined audience, script, six-beat storyboard, packaging wireframes, proposed metrics; on-request YouTube player; direct fallback; optimized portrait; canonical URLs | Broad three-line hero, generic blue card system, future-transition framing, visually repetitive project blocks | Use this as the content and technical base; retain functional URLs, references, PDFs and accessibility fallbacks; rebuild the visual identity and home story |
+| `proof-first-rebuild`, `eb7860e` | Same proof-led intent as PR #2 | Résumé file begins `JVBER...` (base64 text), rather than `%PDF-`; not a valid binary PDF as stored. No unique visual feature | Do not import the broken PDF or duplicate rewrite. Keep the valid main PDF and document its content mismatch |
+| Initial site `31366c3` and early refinements through `49712d3` | Broad education/employment context, project catalog, public source link direction, mobile menu and section awareness | Long résumé-like layout; tiny secondary labels; reveal-on-scroll implementation hides material before observing it; no deliberate reduced-motion path in the early script | Preserve career continuity and the document catalog. Reimplement section awareness without hiding content; keep straightforward navigation |
+| `4d124fe` “Slight site redesign” | Clearer visual categories, multiple tones, structured timeline and hero composition | Corporate card vocabulary, padded sections, generic shadow system; same reveal-on-scroll dependency | Keep category and hierarchy ideas, but use editorial numbers, materials and real artifacts instead of a stack of interchangeable cards |
+| `67b5e37` “Portfolio polish” plus `2a27847` | Canonical/social metadata, favicon, featured-work prioritization, direct résumé download | Generic social identity; featured badge alone did not tell a story | Retain metadata and direct résumé access; use a coordinated monogram and a materially different featured product treatment |
+| `71a7dc6` → `05e57ae` | Demonstrated willingness to show a technical experiment; updated authentic portrait | x402 was deliberately removed in a later revision; no reason to resurrect it against that edit | Keep the portrait and source transparency. Feature Radio Ready as the stronger relevant technology example |
+| `0dc9983` and `de58a47` | Club 52 volunteering and clearer content-strategy positioning | Hero still announces a career category more than a distinctive point of view | Preserve volunteering in the experience summary; write a people-and-making introduction |
+| `06f2de8` → `434df2f` | Major improvement in readable case studies, separate real/proposed evidence, lighter imagery, keyboard/menu/video fallbacks and canonical URLs | Limited interaction and inconsistent prominence of actual product work across branches | Preserve the substance; add a step-through storyboard, a three-perspective example and the Radio Ready case; apply one shared system |
+
+## Selected feature map
+
+| Feature | Origin | Final implementation |
+|---|---|---|
+| Published video with optional player | `434df2f` | Retained in `youtube-content.html`; third-party iframe loads on request |
+| Direct original upload/channel links | Current main | Retained, including the no-JavaScript fallback |
+| Evidence labels and proposed scorecards | `06f2de8` | Retained prominently in every case; no invented growth or learning metrics |
+| Radio Ready product/process evidence | PR #1 | New featured homepage section and `radio-ready.html` in the shared design system |
+| Concrete tool-building credibility | PR #2 | High-level guest-case addition, actual demo, proof strip; unsupported figures excluded |
+| Context-aware navigation | Early site | Accessible `aria-current` enhancement; core navigation works without JS |
+| Full project archive and résumé URLs | Earlier site + main | Preserved without breaking existing links |
+| Mobile menu + Escape focus | Main | Retained; desktop resize also resets menu state |
+| Distinctive creative identity | New | Warm paper, dark green-black ink, acid lime, apricot, editorial numbering, serif annotations, custom CSS project art |
+| Interactive “how I think” | New | Three concrete perspectives on a mixed-preference group; no auto-rotation |
+| Storyboard reader | Main storyboard + new interaction | Six selectable beats; all six readable without JS and when printing |
+
+## Consolidation boundaries
+
+This is a design/content consolidation, not a merge of all branch histories. The existing Radio Ready application remains on `radio-ready-2` and continues to have its own release path. Copying that backend into the static Pages root would add deployment complexity without improving the portfolio. PR #1's portfolio integration is superseded by this branch, but its application work is **not** superseded. PR #2 should not subsequently be merged wholesale over this version.
+
+All selected public material is already public or independently authored. No private training source, internal communications, operational lookup data, or original training screenshots were opened or copied into this work. The exact training counts mentioned in PR #2 were not independently verified and are excluded.

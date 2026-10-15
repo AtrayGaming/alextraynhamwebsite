@@ -1,0 +1,49 @@
+name: Portfolio quality
+on:
+  pull_request:
+    paths: ['*.html', '*.css', '*.js', 'assets/**', 'scripts/**', '.github/workflows/portfolio.yml', '_headers', 'sitemap.xml']
+  push:
+    branches: [main]
+    paths: ['*.html', '*.css', '*.js', 'assets/**', 'scripts/**', '.github/workflows/portfolio.yml', '_headers', 'sitemap.xml']
+permissions:
+  contents: read
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, firefox, webkit]
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
+      - name: Structural, local links and asset budgets
+        run: |
+          python3 scripts/check-site.py
+          node --check script.js
+      - name: Install isolated test dependencies
+        run: npm install --prefix /tmp/portfolio-test-deps --no-audit --no-fund @playwright/test@1.64.0 @axe-core/playwright@4.13.0
+      - name: Install browser
+        run: /tmp/portfolio-test-deps/node_modules/.bin/playwright install --with-deps ${{ matrix.browser }}
+      - name: Serve repository and verify
+        env:
+          BROWSER: ${{ matrix.browser }}
+        run: |
+          python3 -m http.server 8080 --bind 127.0.0.1 > /tmp/portfolio-server.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill "$SERVER_PID"' EXIT
+          for attempt in $(seq 1 20); do
+            if curl --fail --silent http://127.0.0.1:8080/index.html > /dev/null; then break; fi
+            sleep 1
+          done
+          node scripts/browser-check.cjs
+      - name: Keep screenshots and accessibility reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: portfolio-${{ matrix.browser }}
+          path: test-results/
+          retention-days: 14
