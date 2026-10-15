@@ -25,7 +25,15 @@ The managed workspace does not expose the required local browser-control skill. 
 - On-request YouTube iframe URL and direct fallback. The third-party player response is stubbed; actual playback is not claimed.
 - Reduced-motion styles and complete no-JavaScript navigation/content.
 
-Run results will be recorded here after CI finishes. Physical devices, screen-reader use, live YouTube playback, Google Drive authorization and real-user Core Web Vitals remain outside this automated suite.
+**Passed on commit `fda6c0a3131884235b74d68bb56908f3d6f078be`: Chromium, Firefox and WebKit.** [CI run 38770058380](https://github.com/AtrayGaming/alextraynhamwebsite/actions/runs/38770058380).
+
+All three jobs passed the complete suite: 20 page/viewport combinations per engine, 10 axe scans per engine with zero reported violations, image decoding, no client exceptions, navigation, all perspective/storyboard selections, reduced motion and no-JavaScript fallbacks. This is automated coverage, not a manual WCAG certification.
+
+The first run caught a genuine 320px table overflow. Grid children now shrink correctly so tables scroll inside their own regions. Firefox also exposed a test assumption that rejected a valid cached 304 response; the test now accepts successful cache validation. Both were resolved before the passing run.
+
+Desktop and mobile homepage screenshots were visually reviewed, as was the earlier desktop overview of the full homepage. The final screenshots of all four case studies still need a focused visual pass at the user's requested pause. Physical devices, screen-reader use, live YouTube playback, Google Drive authorization and real-user Core Web Vitals remain outside this automated suite.
+
+The Cloudflare preview deployed successfully. An initial curl check returned HTTP 200 with `X-Robots-Tag: noindex` and the configured headers. Later Python HTTP requests to preview and Radio Ready returned 403; that client did not establish external-site availability, and no protection was bypassed. CI browser tests above run against the repository on isolated GitHub runners, not the live Cloudflare edge.
 
 ## Cloudflare release and rollback
 
