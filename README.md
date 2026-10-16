@@ -4,7 +4,7 @@ Alex Traynham's digital content and marketing portfolio. Static HTML, CSS, and J
 
 ## Pages
 
-- `index.html`: positioning, selected work, supporting projects, About, experience, resume, and contact.
+- `index.html`: positioning, a proof-led record section (`#proof`), selected work, four supporting projects, About, experience, resume, and contact.
 - `one-group-different-speeds.html`: independent Universal content proposal with script, text storyboard, thumbnail layout studies, distribution, and proposed evaluation.
 - `youtube-content.html`: published creator work, packaging reflection, and a proposed analytics review.
 - `guest-experience.html`: exploratory UCF research, operations perspective, and a new communication sample.
@@ -18,7 +18,7 @@ Serve this directory with any static HTTP server, for example `python3 -m http.s
 
 ## Content maintenance
 
-Keep independent concepts, academic work, published work, and future tests clearly labeled. Do not add performance claims without their source, date range, and methodology. The MBA wording currently describes an application; update it only when status changes. The existing resume PDF has been retained and should be aligned with the new degree wording and current career focus in a separate resume update.
+Keep independent concepts, academic work, published work, and future tests clearly labeled. Do not add performance claims without their source, date range, and methodology. The MBA wording currently describes an application; update it only when status changes. The resume PDF in this repository is an older version; the current one-page PDF must be swapped in through the GitHub web UI (same filename) because API uploads corrupt binary files. The Curse Tracker and Gamification PDFs remain in the repository at their original URLs but are no longer featured on the homepage.
 
 For new case studies, use this sequence: opportunity, audience, objective, personal role, strategy, visible deliverables, distribution, measurement, limits, and reflection. Publish the evidence on the page; use PDFs as supporting detail.
 
