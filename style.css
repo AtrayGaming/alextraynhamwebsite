@@ -192,11 +192,7 @@ strong { font-weight: 650; }
 .about-aside li { margin-bottom: 0.35rem; }
 .about-copy { max-width: var(--measure); font-size: 1.05rem; }
 
-.experience-list { margin-top: 3rem; border-top: 1px solid var(--line-strong); }
-.experience-list > h3 {
-  font-size: 0.8rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--muted); padding-top: 1.5rem; margin-bottom: 0.5rem;
-}
+.experience-list { margin-top: 0; }
 .experience-item { border-top: 1px solid var(--line); padding: 1.6rem 0; display: grid; grid-template-columns: 11rem minmax(0, 1fr); gap: 1.5rem; }
 .experience-item time { font-size: 0.92rem; color: var(--muted); font-weight: 500; padding-top: 0.2rem; }
 .experience-item h3 { font-size: 1.12rem; letter-spacing: -0.01em; margin-bottom: 0.4rem; }
@@ -336,6 +332,7 @@ thead th { border-top: 2px solid var(--ink); font-size: 0.8rem; letter-spacing: 
 .case-next a { font-weight: 600; text-decoration: none; font-size: 1.05rem; white-space: nowrap; }
 .case-next a:hover { text-decoration: underline; text-underline-offset: 4px; }
 .case-next a::after { content: " \2192"; color: var(--accent); }
+.case-next-links { display: flex; flex-direction: column; align-items: flex-end; gap: 0.6rem; }
 
 /* ---------- Responsive ---------- */
 
