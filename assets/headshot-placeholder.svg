@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000">
+  <rect width="800" height="1000" fill="#f4f2ec"/>
+  <rect x="36" y="36" width="728" height="928" fill="none" stroke="#141414" stroke-width="2"/>
+  <text x="400" y="530" font-family="Inter, Helvetica, Arial, sans-serif" font-size="230" font-weight="700" letter-spacing="-6" text-anchor="middle" fill="#141414">AT<tspan fill="#184ce6">.</tspan></text>
+  <text x="400" y="612" font-family="Inter, Helvetica, Arial, sans-serif" font-size="27" font-weight="600" letter-spacing="8" text-anchor="middle" fill="#5d5b54">ALEX TRAYNHAM</text>
+</svg>
