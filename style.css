@@ -343,29 +343,32 @@ thead th { border-top: 2px solid var(--ink); font-size: 0.8rem; letter-spacing: 
 .proof-strip li::before { content: "\00B7  "; color: var(--accent); }
 .proof-strip li:first-child::before { content: ""; }
 
-/* ---------- Featured work index ---------- */
+/* ---------- Featured work cards ---------- */
 
 .work-index { list-style: none; margin: 0; padding: 0; }
-.index-item {
-  border-top: 1px solid var(--line); padding: 2rem 0;
-  display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 2.5rem; align-items: start;
-}
-.index-item:first-child { border-top: none; padding-top: 0.5rem; }
-.index-main {
-  display: grid; grid-template-columns: 3.25rem minmax(0, 1fr); gap: 1.25rem;
+.work-card-item { border-top: 1px solid var(--line); padding: 2rem 0; }
+.work-card-item:first-child { border-top: none; padding-top: 0.5rem; }
+.work-card {
+  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 2.5rem; align-items: start;
   color: var(--ink); text-decoration: none;
 }
-.index-num { font-size: 0.95rem; font-weight: 700; color: var(--accent); letter-spacing: 0.08em; padding-top: 0.35rem; }
-.index-body h3 { font-size: 1.55rem; margin-bottom: 0.5rem; }
-.index-main:hover h3, .index-main:focus-visible h3 { color: var(--accent-ink); text-decoration: underline; text-underline-offset: 4px; }
-.index-body p { max-width: 38rem; color: var(--ink); }
-.index-body .tags { margin-bottom: 1rem; }
-.index-preview { margin: 0; border: 1px solid var(--line-strong); background: var(--paper-alt); aspect-ratio: 4 / 3; overflow: hidden; }
-.index-preview img { width: 100%; height: 100%; object-fit: cover; transition: opacity 150ms ease; }
-@media (hover: hover) and (min-width: 901px) {
-  .index-preview img { opacity: 0; }
-  .index-item:hover .index-preview img, .index-item:focus-within .index-preview img { opacity: 1; }
+.work-card-media {
+  margin: 0; border: 1px solid var(--line-strong); background: var(--paper-alt);
+  aspect-ratio: 16 / 10; overflow: hidden;
 }
+.work-card-media img { width: 100%; height: 100%; object-fit: cover; }
+@media (prefers-reduced-motion: no-preference) {
+  .work-card-media img { transition: transform 200ms ease; }
+  .work-card:hover .work-card-media img, .work-card:focus-visible .work-card-media img { transform: scale(1.03); }
+}
+.work-card-meta { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 0.6rem; }
+.work-card-meta .status { margin: 0; }
+.work-card-num { font-size: 0.95rem; font-weight: 700; color: var(--accent); letter-spacing: 0.08em; }
+.work-card-body h3 { font-size: 1.55rem; margin: 0 0 0.5rem; }
+.work-card:hover h3, .work-card:focus-visible h3 { color: var(--accent-ink); text-decoration: underline; text-underline-offset: 4px; }
+.work-card-body p { max-width: 38rem; color: var(--ink); margin: 0; }
+.work-card-body .tags { margin-bottom: 1rem; }
 
 /* ---------- Compact sub-blocks ---------- */
 
@@ -397,7 +400,7 @@ thead th { border-top: 2px solid var(--ink); font-size: 0.8rem; letter-spacing: 
   .case-meta { grid-template-columns: 1fr 1fr; }
   .case-section { grid-template-columns: 1fr; gap: 1rem; padding: 2.25rem 0; }
   .experience-item { grid-template-columns: 1fr; gap: 0.35rem; }
-  .index-item { grid-template-columns: 1fr; gap: 1.25rem; }
+  .work-card { grid-template-columns: 1fr; gap: 1.25rem; }
   .headshot { max-width: 22rem; }
   .thumb-gallery { grid-template-columns: 1fr; }
 }
