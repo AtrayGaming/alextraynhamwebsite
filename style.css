@@ -390,6 +390,26 @@ thead th { border-top: 2px solid var(--ink); font-size: 0.8rem; letter-spacing: 
 .thumb-gallery figcaption { font-size: 0.9rem; color: var(--muted); margin-top: 0.55rem; }
 .thumb-gallery figcaption a { font-weight: 600; }
 
+
+/* ---------- Video cards (front page) ---------- */
+
+.video-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.75rem 1.75rem; }
+.video-card { display: block; color: var(--ink); text-decoration: none; }
+.video-thumb {
+  display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover;
+  border: 1px solid var(--line); background: var(--paper-alt);
+}
+.video-card-body { padding-top: 1.1rem; }
+.video-card h3 { font-size: 1.3rem; margin: 0 0 0.45rem; }
+.video-card:hover h3, .video-card:focus-visible h3 { color: var(--accent-ink); text-decoration: underline; text-underline-offset: 4px; }
+.video-card p { color: var(--muted); margin: 0 0 0.7rem; max-width: 30rem; }
+.video-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.video-foot { margin-top: 2.5rem; color: var(--muted); }
+.video-foot a { font-weight: 600; }
+@media (max-width: 640px) {
+  .video-grid { grid-template-columns: 1fr; gap: 2.25rem; }
+}
+
 /* ---------- Responsive ---------- */
 
 @media (max-width: 900px) {
