@@ -367,8 +367,8 @@ thead th { border-top: 2px solid var(--ink); font-size: 0.8rem; letter-spacing: 
 .work-row-meta { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 0.6rem; }
 .work-row-meta .status { margin: 0; }
 .work-row-num { font-size: 0.95rem; font-weight: 700; color: var(--accent); letter-spacing: 0.08em; }
-.work-row h3 { font-size: 1.55rem; margin: 0 0 0.5rem; }
-.work-row:hover h3, .work-row:focus-visible h3 { color: var(--accent-ink); text-decoration: underline; text-underline-offset: 4px; }
+.work-row h2, .work-row h3 { font-size: 1.55rem; margin: 0 0 0.5rem; }
+.work-row:hover h2, .work-row:focus-visible h2, .work-row:hover h3, .work-row:focus-visible h3 { color: var(--accent-ink); text-decoration: underline; text-underline-offset: 4px; }
 .work-row p { max-width: 38rem; color: var(--ink); margin: 0; }
 .work-row .tags { margin-bottom: 1rem; }
 
@@ -431,7 +431,7 @@ thead th { border-top: 2px solid var(--ink); font-size: 0.8rem; letter-spacing: 
 .nav-inner { align-items: center; gap: 1.5rem; padding-top: 0.6rem; padding-bottom: 0.6rem; }
 .brand { margin-right: auto; }
 .nav-links { gap: 1.5rem; }
-.nav-links a { display: inline-flex; align-items: center; min-height: 44px; border-bottom: 2px solid transparent; }
+.nav-links a { display: inline-flex; align-items: center; min-height: 44px; min-width: 44px; border-bottom: 2px solid transparent; }
 .nav-links a[aria-current="page"] { color: var(--accent-ink); border-color: var(--accent); }
 .nav-resume { font-size: 0.88rem; font-weight: 600; min-height: 44px; display: inline-flex; align-items: center; gap: 0.25rem; }
 .nav-resume span { font-weight: 400; }
@@ -444,7 +444,7 @@ thead th { border-top: 2px solid var(--ink); font-size: 0.8rem; letter-spacing: 
 .featured-grid .work-item { border: 0; }
 .featured-grid .work-row { display: flex; flex-direction: column; gap: 1.25rem; height: 100%; padding: 1rem; margin: -1rem; }
 .featured-grid .work-row-body { display: flex; flex-direction: column; flex: 1; }
-.featured-grid .work-row h3 { font-size: 1.4rem; }
+.featured-grid .work-row h2, .featured-grid .work-row h3 { font-size: 1.4rem; }
 .featured-grid .work-row-meta { gap: 0.65rem; }
 .featured-grid .status { font-size: 0.72rem; letter-spacing: 0.07em; }
 .featured-grid .work-row .text-link { margin-top: auto; }
