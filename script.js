@@ -1,22 +1,3 @@
-document.documentElement.classList.add('js');
-const toggle = document.querySelector('.menu-toggle');
-const links = document.getElementById('navLinks');
-function closeMenu(restoreFocus = false) {
-  if (!toggle || !links) return;
-  links.classList.remove('open');
-  toggle.setAttribute('aria-expanded', 'false');
-  toggle.textContent = 'Menu';
-  if (restoreFocus) toggle.focus();
-}
-toggle?.addEventListener('click', () => {
-  const open = links.classList.toggle('open');
-  toggle.setAttribute('aria-expanded', String(open));
-  toggle.textContent = open ? 'Close' : 'Menu';
-});
-links?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => closeMenu()));
-document.addEventListener('keydown', event => {
-  if (event.key === 'Escape' && links?.classList.contains('open')) closeMenu(true);
-});
 document.querySelectorAll('[data-video]').forEach(button => {
   button.addEventListener('click', () => {
     const shell = button.closest('.video-shell');
@@ -27,3 +8,17 @@ document.querySelectorAll('[data-video]').forEach(button => {
     frame.focus();
   });
 });
+
+if (location.pathname === '/' || location.pathname === '/index.html') {
+  const legacy = {work:'/work',projects:'/work',content:'/work',archive:'/work#more-projects',experience:'/experience',proof:'/experience#training-tools',about:'/about',contact:'/contact'};
+  const followLegacy = () => {
+    const destination = legacy[location.hash.slice(1)];
+    if (destination) {
+      const target = new URL(destination, location.origin);
+      target.search = location.search;
+      location.replace(target.href);
+    }
+  };
+  followLegacy();
+  window.addEventListener('hashchange', followLegacy);
+}
