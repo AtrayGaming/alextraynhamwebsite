@@ -1,10 +1,10 @@
 # alextraynham.com
 
-Alex Traynham's portfolio. Static HTML, CSS, and JavaScript, with no framework, build step, or backend. Off-white background, black type, blue accents, and thin rules carry across focused pages.
+Alex Traynham's portfolio. Static HTML, CSS, and JavaScript, with no framework, build step, or backend. Warm paper, black type, cobalt tabs, serif accents, original thumbnails, and script excerpts carry across focused pages.
 
 ## Pages
 
-- `/`: a short introduction, three selected projects, and routes into the rest of the site.
+- `/`: a personal introduction and three project stories with original thumbnails, a dated analytics snapshot, a script excerpt, and links into the full case studies.
 - `/work`: the complete project index and supporting academic PDFs.
 - `/experience`: roles, education, training tools, and the resume download.
 - `/about`: Alex's story and direction.
