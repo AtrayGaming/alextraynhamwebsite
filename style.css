@@ -584,7 +584,6 @@ h1 em, h2 em, h3 em, h4 em { font-family: inherit; font-style: normal; font-weig
 .case-section .section-label > span { font-size: 1.65rem; font-family: inherit; font-style: normal; letter-spacing: -0.02em; }
 .case-evidence { background: var(--paper-alt); border-top: 3px solid var(--accent); padding: 1.5rem; margin-top: 2rem; }
 .case-evidence .evidence-headline { font-size: 2rem; letter-spacing: -0.035em; line-height: 1.2; }
-.case-evidence strong { color: var(--accent-ink); }
 .case-evidence a { font-weight: 600; }
 @media (max-width: 900px) {
   .intro-studio { gap: 2rem; }
