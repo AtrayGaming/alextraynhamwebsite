@@ -630,3 +630,5 @@ h1 em, h2 em, h3 em, h4 em { font-family: inherit; font-style: normal; font-weig
   .script-excerpt { background: #fff; color: #141414; border: 1px solid; box-shadow: none; }
   .script-excerpt a, .script-excerpt .eyebrow { color: #141414; }
 }
+
+.archive-item audio, .archive-item video { width: 100%; margin-top: 0.75rem; }
