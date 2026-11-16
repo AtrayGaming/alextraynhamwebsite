@@ -104,8 +104,7 @@ export default function Home() {
       </section>
       <footer className="public-footer">
         <span>
-          Radio Ready · Designed and developed with AI assistance by Alex
-          Traynham
+          Radio Ready · Built by Alex Traynham
         </span>
         <p>
           All demonstration content is fictional. This is not an operational
