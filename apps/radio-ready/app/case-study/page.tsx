@@ -6,12 +6,8 @@ export default function CaseStudy() {
         <Link href="/">Radio Ready</Link>
         <a href="https://alextraynham.com">Alex’s portfolio</a>
       </nav>
-      <p className="eyebrow">PRODUCT DESIGN / LEARNING EXPERIENCE</p>
-      <h1>
-        Making practice
-        <br />
-        feel purposeful.
-      </h1>
+      <p className="eyebrow">Case study</p>
+      <h1>Radio Ready</h1>
       <p className="case-lead">
         Turning a frontline training idea into a physical learning tool and an
         interactive digital product.

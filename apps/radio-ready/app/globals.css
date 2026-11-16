@@ -1242,56 +1242,60 @@ textarea {
   color: #a9b1c5;
 }
 .case-study {
-  max-width: 1000px;
+  max-width: 760px;
   margin: auto;
-  padding: 35px 40px 65px;
+  padding: 40px 24px 70px;
 }
 .case-study nav {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 80px;
+  margin-bottom: 48px;
   font-weight: 600;
+  font-size: 0.95rem;
 }
 .case-study h1 {
-  font-size: clamp(3.2rem, 7vw, 5rem);
-  margin-bottom: 25px;
+  font-size: clamp(2.2rem, 5vw, 2.9rem);
+  letter-spacing: -0.03em;
+  margin-bottom: 16px;
 }
 .case-lead {
-  font-size: 1.35rem;
-  max-width: 650px;
+  font-size: 1.15rem;
+  line-height: 1.65;
 }
 .case-meta {
   display: flex;
-  justify-content: space-between;
-  gap: 25px;
-  padding: 30px 0;
+  flex-wrap: wrap;
+  gap: 18px 40px;
+  padding: 22px 0;
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   font-size: 0.875rem;
-  margin: 40px 0 60px;
+  margin: 32px 0 44px;
 }
 .case-meta strong {
   display: block;
-  margin-top: 10px;
+  margin-top: 6px;
 }
 .case-study section {
-  max-width: 720px;
-  margin: 0 auto 50px;
+  margin-bottom: 40px;
+}
+.case-study section h2 {
+  font-size: 1.45rem;
+  margin-bottom: 12px;
 }
 .case-study section p {
-  font-size: 1.075rem;
-  line-height: 1.8;
+  font-size: 1.05rem;
+  line-height: 1.75;
 }
 .case-study blockquote {
-  margin: 35px 0;
-  padding-left: 25px;
+  margin: 28px 0;
+  padding-left: 20px;
   border-left: 3px solid var(--violet);
-  font-size: 1.5rem;
-  color: #4e3292;
-  line-height: 1.45;
+  font-size: 1.15rem;
+  line-height: 1.55;
 }
 .case-study footer {
-  margin-top: 60px;
+  margin-top: 48px;
   border-top: 1px solid var(--line);
   padding-top: 24px;
   font-size: 0.8rem;
@@ -1725,7 +1729,7 @@ textarea {
     padding: 25px 23px;
   }
   .case-study h1 {
-    font-size: 3rem;
+    font-size: 2.1rem;
   }
   .case-lead {
     font-size: 1.1rem;
