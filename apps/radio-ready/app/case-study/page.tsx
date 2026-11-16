@@ -30,7 +30,7 @@ export default function CaseStudy() {
         <span>
           Process
           <br />
-          <strong>AI-assisted design and development</strong>
+          <strong>Iterative design, build, and testing</strong>
         </span>
       </div>
       <section>
