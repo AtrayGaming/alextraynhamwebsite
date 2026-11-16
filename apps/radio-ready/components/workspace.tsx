@@ -310,8 +310,8 @@ export function Workspace() {
             radio ready<small>PRACTICE STUDIO</small>
           </span>
         </Link>
-        <p className="nav-label">YOUR WORKSPACE</p>
-        <nav aria-label="Workspace">
+        <p className="nav-label">PRACTICE</p>
+        <nav aria-label="Practice">
           <button
             className={view === "overview" ? "active" : ""}
             onClick={() => go("overview")}
@@ -319,23 +319,6 @@ export function Workspace() {
             <LayoutDashboard />
             Overview
           </button>
-          <button
-            className={view === "progress" ? "active" : ""}
-            onClick={() => go("progress")}
-          >
-            <ChartNoAxesCombined />
-            Your progress
-          </button>
-          <button
-            className={view === "reference" ? "active" : ""}
-            onClick={() => go("reference")}
-          >
-            <BookOpen />
-            Field notes
-          </button>
-        </nav>
-        <p className="nav-label">PRACTICE MODES</p>
-        <nav aria-label="Practice modes">
           {modes
             .filter(
               (m) => m.id !== "trainer" || !user || user.role !== "trainee",
@@ -351,6 +334,20 @@ export function Workspace() {
                 {m.name}
               </button>
             ))}
+          <button
+            className={view === "progress" ? "active" : ""}
+            onClick={() => go("progress")}
+          >
+            <ChartNoAxesCombined />
+            Your progress
+          </button>
+          <button
+            className={view === "reference" ? "active" : ""}
+            onClick={() => go("reference")}
+          >
+            <BookOpen />
+            Field notes
+          </button>
         </nav>
         {user && user.role !== "trainee" && (
           <>
@@ -382,9 +379,7 @@ export function Workspace() {
       </aside>
       <div className="workspace-body">
         <header className="workspace-top">
-          <span>
-            <span className="small-symbol">R / R</span> Learning workspace
-          </span>
+          <span>Practice studio</span>
           <div>
             <span className="save-label">
               {user ? "Account progress" : "Saved on this device"}
@@ -411,30 +406,22 @@ export function Workspace() {
           <div className="page-heading">
             <div>
               <p className="eyebrow">
-                {view === "practice"
-                  ? modes.find((x) => x.id === mode)?.name
-                  : "RADIO READY / FICTIONAL FESTIVAL EDITION"}
+                {view === "practice" ? "Practice session" : "Fictional demo"}
               </p>
               <h1 tabIndex={-1} ref={heading}>
                 {view === "overview"
-                  ? "Your practice studio."
+                  ? "Overview"
                   : view === "practice"
-                    ? mode === "learn"
-                      ? "Get to know the set."
-                      : mode === "match"
-                        ? "Make the connection."
-                        : mode === "scenario"
-                          ? "Think it through."
-                          : "Bring the room together."
+                    ? modes.find((x) => x.id === mode)?.name
                     : view === "progress"
-                      ? "Your practice, at a glance."
+                      ? "Your progress"
                       : view === "reference"
-                        ? "Find a familiar idea."
+                        ? "Field notes"
                         : view === "login"
-                          ? "Welcome back."
+                          ? "Sign in"
                           : view === "manage"
-                            ? "Shape the next session."
-                            : "See where practice helps."}
+                            ? "Content library"
+                            : "Learning trends"}
               </h1>
             </div>
             {view === "practice" && (
@@ -783,7 +770,6 @@ export function Workspace() {
             </>
           )}
           <footer className="workspace-footer">
-            <span>Built for thoughtful practice.</span>
             <span>Fictional content · Not an operational reference</span>
           </footer>
         </main>

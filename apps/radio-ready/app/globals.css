@@ -408,23 +408,6 @@ button:hover:not(:disabled),
   max-width: 95px;
   line-height: 1.5;
 }
-.signal-art {
-  position: absolute;
-  right: -25px;
-  bottom: 78px;
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  height: 125px;
-  width: 180px;
-  opacity: 0.22;
-  transform: rotate(-12deg);
-}
-.signal-art i {
-  width: 10px;
-  background: #ddcaff;
-  border-radius: 8px;
-}
 .progress-summary {
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -1119,36 +1102,23 @@ textarea {
 .landing-hero {
   max-width: 1360px;
   margin: auto;
-  padding: 75px 50px 95px;
+  padding: 55px 50px 65px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 65px;
   align-items: center;
 }
 .landing-hero h1 {
-  font-size: clamp(3.5rem, 5.3vw, 5.3rem);
+  font-size: clamp(2.4rem, 3.8vw, 3.6rem);
   font-weight: 650;
-  letter-spacing: -0.06em;
-  line-height: 1.06;
+  letter-spacing: -0.04em;
+  line-height: 1.12;
   margin-bottom: 28px;
-}
-.landing-hero h1 em {
-  font-style: normal;
-  color: var(--violet);
 }
 .landing-hero .eyebrow {
   font-size: 0.65rem;
   letter-spacing: 0.09em;
-  display: flex;
-  align-items: center;
-  gap: 10px;
   margin-bottom: 30px;
-}
-.pill-dot {
-  width: 8px;
-  height: 8px;
-  background: var(--violet);
-  border-radius: 50%;
 }
 .hero-copy {
   font-size: 1.1rem;
@@ -1164,7 +1134,6 @@ textarea {
   background: #e7e4f0;
   border: 1px solid #d9d4e8;
   border-radius: 24px;
-  transform: rotate(2deg);
   padding: 25px;
   box-shadow: 0 20px 60px #30264b13;
 }
@@ -1219,44 +1188,47 @@ textarea {
   height: 1px;
   background: #7a688f;
 }
-.landing-features {
+.home-modes {
   max-width: 1260px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 45px;
   margin: 0 auto;
-  padding: 50px 0;
+  padding: 10px 0 70px;
+}
+.home-modes h2 {
+  font-size: 1.4rem;
+  margin-bottom: 18px;
+}
+.home-modes ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   border-top: 1px solid var(--line);
+}
+.home-modes li {
   border-bottom: 1px solid var(--line);
 }
-.landing-features article {
-  padding: 0 20px;
+.home-modes a {
+  display: flex;
+  align-items: baseline;
+  gap: 22px;
+  padding: 18px 6px;
+  text-decoration: none;
+  color: inherit;
 }
-.landing-features svg {
+.home-modes a:hover .home-mode-name {
   color: var(--violet);
-  margin-bottom: 20px;
 }
-.landing-features h2 {
-  font-size: 1.25rem;
+.home-mode-name {
+  font-weight: 650;
+  min-width: 150px;
 }
-.landing-features p {
+.home-mode-desc {
+  flex: 1;
   font-size: 0.95rem;
-  margin: 0;
-  max-width: 310px;
 }
-.landing-story {
-  max-width: 1260px;
-  margin: auto;
-  padding: 90px 20px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 25px 60px;
-}
-.landing-story > .eyebrow {
-  grid-column: 1/-1;
-}
-.landing-story h2 {
-  font-size: 2.4rem;
+.home-modes a > svg {
+  align-self: center;
+  color: var(--violet);
+  flex-shrink: 0;
 }
 .public-footer {
   background: var(--sidebar);
@@ -1402,7 +1374,7 @@ textarea {
     gap: 35px;
     padding: 50px 35px 70px;
   }
-  .landing-features {
+  .home-modes {
     margin: 0 35px;
   }
   .public-nav {
@@ -1487,16 +1459,6 @@ textarea {
   }
   .public-nav nav > a:not(.button) {
     display: none;
-  }
-  .landing-features {
-    gap: 20px;
-  }
-  .landing-story {
-    padding: 65px 35px;
-    gap: 25px;
-  }
-  .landing-story h2 {
-    font-size: 2rem;
   }
   .reference-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -1745,27 +1707,16 @@ textarea {
   .preview-card strong {
     font-size: 2rem;
   }
-  .landing-features {
-    grid-template-columns: 1fr;
+  .home-modes {
     margin: 0 22px;
-    padding: 35px 0;
-    gap: 35px;
+    padding-bottom: 50px;
   }
-  .landing-features article {
-    padding: 0;
+  .home-modes a {
+    flex-wrap: wrap;
+    gap: 4px 14px;
   }
-  .landing-features svg {
-    margin-bottom: 13px;
-  }
-  .landing-features p {
-    max-width: none;
-  }
-  .landing-story {
-    grid-template-columns: 1fr;
-    padding: 55px 22px;
-  }
-  .landing-story h2 {
-    margin-bottom: 0;
+  .home-mode-name {
+    min-width: 0;
   }
   .public-footer {
     padding: 30px 22px;

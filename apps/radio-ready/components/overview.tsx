@@ -46,10 +46,7 @@ export function Overview({
             <span className="micro">YOUR NEXT SESSION</span>
             <Zap size={22} />
           </div>
-          <h2>
-            One set.
-            <br />A clear finish.
-          </h2>
+          <h2>Match cues to meanings.</h2>
           <p>
             Match a label to its meaning. Revisit the ones you miss. Finish with
             a set you know better.
@@ -68,11 +65,6 @@ export function Overview({
                 ? `${active.queue.length} concepts remaining`
                 : `${items.filter((x) => x.kind === "term").length} fictional concepts`}
             </span>
-          </div>
-          <div className="signal-art" aria-hidden="true">
-            {[25, 48, 70, 42, 100, 65, 35, 80, 55, 28].map((n, i) => (
-              <i key={i} style={{ height: `${n}%` }} />
-            ))}
           </div>
         </section>
         <aside className="progress-summary">
@@ -112,8 +104,7 @@ export function Overview({
         </aside>
       </div>
       <div className="section-heading">
-        <h2>Find your way to practice</h2>
-        <span>Choose a format that fits</span>
+        <h2>Practice modes</h2>
       </div>
       <div className="mode-grid">
         {modes
@@ -139,7 +130,7 @@ export function Overview({
                   : m.id === "match"
                     ? "Recall practice"
                     : m.id === "scenario"
-                      ? "Everyday choices"
+                      ? "Short situations"
                       : "Group learning"}
                 <ChevronRight size={18} />
               </span>
@@ -152,9 +143,7 @@ export function Overview({
         </span>
         <div>
           <h3>
-            {missed.length
-              ? "Give the tricky ones another look."
-              : "Your review list starts here."}
+            {missed.length ? "Review what you missed" : "Nothing to review yet"}
           </h3>
           <p>
             {missed.length
