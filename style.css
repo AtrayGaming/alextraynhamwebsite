@@ -636,3 +636,18 @@ h1 em, h2 em, h3 em, h4 em { font-family: inherit; font-style: normal; font-weig
 }
 
 .archive-item audio, .archive-item video { width: 100%; margin-top: 0.75rem; }
+
+/* ---------- Contact form ---------- */
+
+.contact-form { display: flex; flex-direction: column; gap: 1.1rem; margin-top: 1.5rem; max-width: 34rem; }
+.contact-form .field { display: flex; flex-direction: column; gap: 0.4rem; }
+.contact-form label { font-weight: 600; font-size: 0.98rem; }
+.contact-form input, .contact-form textarea {
+  font: inherit; color: var(--ink); background: var(--paper);
+  border: 1px solid var(--faint); border-radius: 6px; padding: 0.7rem 0.85rem;
+}
+.contact-form input:focus, .contact-form textarea:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: var(--accent); }
+.contact-form textarea { resize: vertical; }
+.contact-form button { align-self: flex-start; cursor: pointer; font: inherit; }
+.contact-form button:disabled { opacity: 0.6; cursor: wait; }
+.contact-form .form-status { color: var(--muted); min-height: 1.4em; margin: 0; }
