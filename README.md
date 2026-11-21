@@ -1,6 +1,6 @@
 # alextraynham.com
 
-Alex Traynham's portfolio. Static HTML, CSS, and JavaScript, with no framework, build step, or backend. Warm paper, black type, cobalt tabs, serif accents, original thumbnails, and script excerpts carry across focused pages.
+Alex Traynham's portfolio. Static HTML, CSS, and JavaScript, with no framework, build step, or backend. Warm paper, black type, one brick-red accent, original thumbnails, and script excerpts carry across focused pages.
 
 ## Pages
 
@@ -31,7 +31,9 @@ Workers with Static Assets is a separate planned hosting change. Do not add a fr
 
 Keep independent concepts, academic research, published work, and future tests clearly labeled. Do not add outcomes or performance claims without a source, date range, and methodology. Prefer durable descriptions; existing analytics snapshots remain explicitly dated. Preserve Alex's plain first-person voice.
 
-MBA wording reflects the confirmed Spring 2027 Evening MBA start. The resume PDF is still the existing file and needs a separate factual refresh before the new site is promoted to production. Replace it with a verified PDF under the same filename; do not run binary content through a text upload API.
+MBA wording reflects the confirmed January 2027 Evening MBA start.
+
+The homepage "Where I am headed" block carries a short-term entry (Dezerland marketing role, Evening MBA). Update or remove that entry the month either fact changes; a status block is only an asset while it is current. The resume PDF is still the existing file and needs a separate factual refresh before the new site is promoted to production. Replace it with a verified PDF under the same filename; do not run binary content through a text upload API.
 
 For a case study, show the opportunity, audience, Alex's role, decisions, visible deliverables, evidence, limits, and next step. PDFs support the page rather than replace it.
 
