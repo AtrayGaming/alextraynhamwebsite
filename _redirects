@@ -1,0 +1,4 @@
+# Redirects for alextraynham.com (Cloudflare Pages).
+# Added 2026-11-21: short /resume URL for the canonical resume PDF,
+# so downloads are countable in Cloudflare Analytics.
+/resume /alex-traynham-resume.pdf 301
